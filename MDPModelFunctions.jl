@@ -85,8 +85,7 @@ function get_optimal_V(S,object_probe_probs, per_timestep_probe_prob)
     # initialize V
     V = zeros(NS)
 
-    #while max_change > 1e-9
-    for i in 1:3
+    while max_change > 1e-9
 
         V_new = copy(V)
 
