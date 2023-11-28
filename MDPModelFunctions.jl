@@ -1,10 +1,13 @@
 #########################
 ##### Specify the model...
 
-
 ###############
 ######### States
+
+using StatsBase
+
 function generate_all_states(N_Quanta, N_Objects)
+
     all_states = []
 
     for x in Iterators.product(Iterators.repeated(0:N_Quanta, N_Objects)...)
@@ -43,7 +46,7 @@ function get_possible_s_prime_and_probs(s,A)
     possible_S_prime = [get_s_prime_given_action_and_degraded_object(s,A,i) for i in 1:N_Objects]
 
     # probability that object is selected for degradation...
-    prob_S_prime = [s[i]/N_Quanta for i in 1:N_Objects]
+    prob_S_prime = s ./ N_Quanta#[s[i]/N_Quanta for i in 1:N_Objects]
     
     possible_S_prime = possible_S_prime[prob_S_prime .> 0]
     prob_S_prime = prob_S_prime[prob_S_prime .> 0]
@@ -61,13 +64,22 @@ function prob_remember(num_quanta)
 end
 """
 
+#function prob_remember(num_quanta)
+#    return .5 .+ ((.1*num_quanta).^.5)/2
+#end
+"""
 function prob_remember(num_quanta)
-    return .5 .+ ((.1*num_quanta).^.5)/2
+    return 1 .- exp.(-.2*num_quanta)
+end
+"""
+
+function prob_remember(num_quanta)
+    return .5 .+ (1 .- exp.(.1*-(num_quanta)))./2
 end
 
 function get_state_reward(s, object_probe_probs, per_timestep_probe_prob)
 
-    return prob_remember(s)'*object_probe_probs*per_timestep_probe_prob
+    return prob_remember.(s)'*object_probe_probs*per_timestep_probe_prob
 
 end
 
@@ -75,7 +87,6 @@ end
 ## Value iteration
 
 function get_optimal_V(S,object_probe_probs, per_timestep_probe_prob)
-    
     
     NS = length(S)
     
@@ -136,7 +147,7 @@ function get_optimal_policy(V, S,object_probe_probs, per_timestep_probe_prob)
     N_Objects = length(S[1])
     policy = zeros(NS,N_Objects) # change this so that it's a probability distribution
     
-    gamma = .99
+    gamma = .95
 
     
     for s_idx in 1:NS
@@ -305,6 +316,8 @@ function get_prob_remember_over_time(S, start_state_dist, N_TimeSteps, T_ss)
 
     S_arr = [collect(s) for s in S]
     pr = [prob_remember(s) for s in S_arr];
+    
+    N_Objects = length(S[1])
 
     prob_remember_object = zeros(N_TimeSteps,N_Objects)
 
@@ -359,6 +372,48 @@ function simulate_delayed_memory(N_Quanta, N_Objects, epsilon, N_TimeSteps)
     
 end
 
+## simualte delayed memory test computing prob remember using transitions
+function simulate_precue(N_Quanta, N_Objects, epsilon, N_TimeSteps; cue_reliability = .8)
+        
+    object_probe_probs = zeros(N_Objects)
+    object_probe_probs[1] = cue_reliability
+    object_probe_probs[2:end] .= (1 - cue_reliability)/(N_Objects - 1)
+    
+    # specify reward distr
+    exp_num_time_steps = 10
+    per_timestep_probe_prob = 1/exp_num_time_steps
+
+    # get all states
+    
+    print("Generating All States")
+    print("\n")
+    
+    # can this be sped up?
+    S = generate_all_states(N_Quanta,N_Objects)
+    NS = length(S)
+    
+    # Computing 
+    
+    print("Computing Optimal Policy")
+    print("\n")
+    
+    optimal_policy, V = value_iteration(S,object_probe_probs, per_timestep_probe_prob);
+    
+    random_policy = get_random_quanta_policy(S);
+    epsilon_policy = get_epsilon_policy(optimal_policy,random_policy,epsilon);
+
+    # Get state-state transition distribution
+    T_ss = get_T_ss(S, epsilon_policy)
+    start_state_dist = ones(NS)/NS
+
+    print("Simulating Episode")
+    print("\n")
+    prob_remember_object = get_prob_remember_over_time(S, start_state_dist, N_TimeSteps, T_ss)
+    
+    return prob_remember_object
+    
+end
+
 
 # simulate retro-cue paradigm, computing prob remember using transitions
 function simulate_retrocue(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post)
@@ -373,7 +428,12 @@ function simulate_retrocue(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_Time
 
     # change policy to probabilistic
     policy_pre, V = value_iteration(S,1/N_Objects*ones(N_Objects), per_timestep_probe_prob);
-    policy_post, V = value_iteration(S,[.8, .1, .1], per_timestep_probe_prob);
+    
+    obj_probe_probs = zeros(N_Objects)
+    obj_probe_probs[1] = .8
+    obj_probe_probs[2:end] .= .2/(N_Objects - 1)
+    
+    policy_post, V = value_iteration(S,obj_probe_probs, per_timestep_probe_prob);
     random_policy = get_random_quanta_policy(S);
 
     epsilon_policy_pre = get_epsilon_policy(policy_pre,random_policy,epsilon);
@@ -390,7 +450,7 @@ function simulate_retrocue(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_Time
     start_state_dist_post = (T_ss_pre^(N_TimeSteps_Pre-1))'*start_state_dist_pre
     prob_remember_object_post = get_prob_remember_over_time(S, start_state_dist_post, N_TimeSteps_Post, T_ss_post);
 
-    prob_remember_object_uncued = [prob_remember_object_pre[:,3]; prob_remember_object_post[:,3]]
+    prob_remember_object_uncued = [prob_remember_object_pre[:,2]; prob_remember_object_post[:,2]]
     prob_remember_object_cued = [prob_remember_object_pre[:,1]; prob_remember_object_post[:,1]]
     
     return prob_remember_object_cued, prob_remember_object_uncued
