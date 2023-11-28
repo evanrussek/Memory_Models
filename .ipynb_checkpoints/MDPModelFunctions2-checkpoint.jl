@@ -2,7 +2,6 @@ include("MDPModelFunctions.jl")
 using Random
 using StatsBase
 
-
 function sample_state(N_Objects, N_Quanta)
     
     # Step 1: Generate N-1 random integers
