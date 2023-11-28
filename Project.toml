@@ -1,9 +1,11 @@
 [deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 Combinatorics = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 ExpFamilyDistributions = "ac7c78bc-e309-483d-b879-ab7fdbfc3919"
 IJulia = "7073ff75-c697-5162-941a-fcdaad2a7d2a"
+JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 PythonPlot = "274fc56d-3b97-40fa-a1cd-1b4a50311bf9"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
