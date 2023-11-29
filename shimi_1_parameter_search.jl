@@ -32,9 +32,11 @@ job_nt = []
 for ep in eps_vals
     for q in q_vals
         for nt in NT_vals
+            
             push!(job_eps, ep)
             push!(job_q, q)
             push!(job_nt, nt)
+            
         end
     end
 end
