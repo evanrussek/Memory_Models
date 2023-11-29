@@ -2,10 +2,10 @@ using JLD2
 include("MDPModelFunctions2.jl")
 
 # array job stuff
-is_array_job = false
-run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 4
+is_array_job = true
+run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 2
 
-on_cluster = false
+on_cluster = true
 
 if on_cluster
     to_save_folder = "/home/erussek/projects/Memory_Models/shimi_1_run1"
@@ -43,7 +43,7 @@ n_jobs_total = length(job_nt)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 360 # should be about 30 minutes...
+n_jobs_per_run = 180 # should be about 30 minutes...
 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 
