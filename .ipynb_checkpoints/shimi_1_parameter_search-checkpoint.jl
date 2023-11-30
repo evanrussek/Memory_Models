@@ -8,9 +8,9 @@ run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 2
 on_cluster = true
 
 if on_cluster
-    to_save_folder = "/home/erussek/projects/Memory_Models/shimi_1_run1"
+    to_save_folder = "/home/erussek/projects/Memory_Models/shimi_1_run2"
 else
-    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/code/Memory_Models/shimi_1_run1"
+    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/code/Memory_Models/shimi_1_run2"
 end
 
 mkpath(to_save_folder)
@@ -20,7 +20,7 @@ mkpath(to_save_folder)
 eps_vals = 0:.05:1
 
 # quanta values
-q_vals = 2:2:40
+q_vals = 2:2:80
 
 # 
 NT_vals = [25, 50, 100, 200, 400, 800]
@@ -32,9 +32,11 @@ job_nt = []
 for ep in eps_vals
     for q in q_vals
         for nt in NT_vals
+            
             push!(job_eps, ep)
             push!(job_q, q)
             push!(job_nt, nt)
+            
         end
     end
 end
