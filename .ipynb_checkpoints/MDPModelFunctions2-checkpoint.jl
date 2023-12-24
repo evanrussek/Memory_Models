@@ -163,7 +163,7 @@ end
 
 
 
-function sim_exp1(epsilon, N_Quanta, NT_per_Second)
+function sim_exp1(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
     
     """
     d_all: is prob correct over time for 3 consitions
@@ -202,7 +202,154 @@ function sim_exp1(epsilon, N_Quanta, NT_per_Second)
 
     end
     
-    return d_all
+    if return_last_only
+        return d_all[:,:,end]
+    else    
+        return d_all
+    end
     
+end
+
+function sim_exp2(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
+
+    N_Trials = 1000;
+
+    N_Objects = 4
+
+    # do the IM Block
+
+    N_TimeSteps_Pre = Int(round(.2*NT_per_Second))
+    N_TimeSteps_Post = Int(round(.5*NT_per_Second))
+    N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
+
+    d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode);
+    p_short_neutral = d_neutral[:,1]
+
+    d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode);
+    p_short_retro = d_retro[:,1]
+
+    # VSTM
+    # Presentation -> 1000ms -> 500 ms
+
+    N_TimeSteps_Pre = Int(round(1*NT_per_Second))
+    N_TimeSteps_Post = Int(round(.5*NT_per_Second))
+    N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
+
+    d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode);
+    p_long_neutral = d_neutral[:,1]
+
+    d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode);
+    p_long_retro = d_retro[:,1];
+    
+    if return_last_only
+        return (p_short_neutral[end], p_short_retro[end], p_long_neutral[end], p_long_retro[end])
+    else
+        return (p_short_neutral, p_short_retro, p_long_neutral, p_long_retro)
+    end
+    
+end
+
+function sim_exp3(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
+
+    N_Trials = 1000;
+
+    N_Object_Vals = [3,6]
+
+    N_nobj = length(N_Object_Vals);
+
+    # IM time scales...
+    N_TimeSteps_Pre_IM = Int(round(.2*NT_per_Second))
+    N_TimeSteps_Post_IM = Int(round(.5*NT_per_Second))
+    N_TimeSteps_IM = N_TimeSteps_Pre_IM + N_TimeSteps_Post_IM
+
+    # SHORT Time Scales...
+    N_TimeSteps_Pre_VSTM = Int(round(1*NT_per_Second))
+    N_TimeSteps_Post_VSTM = Int(round(.5*NT_per_Second))
+    N_TimeSteps_VSTM = N_TimeSteps_Pre_VSTM + N_TimeSteps_Post_VSTM
+
+    # long time-scales...
+    N_TimeSteps_Pre_Long_VSTM = Int(round(1.8*NT_per_Second))
+    N_TimeSteps_Post_Long_VSTM = Int(round(.5*NT_per_Second))
+    N_TimeSteps_Long_VSTM = N_TimeSteps_Pre_Long_VSTM + N_TimeSteps_Post_Long_VSTM
+
+    p_IM_neutral = zeros(2, N_TimeSteps_IM)
+    p_IM_retro = zeros(2, N_TimeSteps_IM)
+
+    p_VSTM_neutral = zeros(2, N_TimeSteps_VSTM)
+    p_VSTM_retro = zeros(2, N_TimeSteps_VSTM)
+
+    p_Long_VSTM_neutral = zeros(2, N_TimeSteps_Long_VSTM)
+    p_Long_VSTM_retro = zeros(2, N_TimeSteps_Long_VSTM)
+
+    for (obj_idx, N_Objects) in enumerate(N_Object_Vals)
+
+        # do the IM Block
+
+        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_IM, 0, N_Trials, simulate_delayed_memory_episode);
+        p_IM_neutral[obj_idx,:] = d_neutral[:,1]
+
+        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_IM, N_TimeSteps_Post_IM, N_Trials, simulate_retrocue_episode);
+        p_IM_retro[obj_idx,:] = d_retro[:,1]
+
+        # VSTM
+        # Presentation -> 1000ms -> 500 ms
+
+        N_TimeSteps_Pre = Int(round(1*NT_per_Second))
+        N_TimeSteps_Post = Int(round(.5*NT_per_Second))
+        N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
+
+        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_VSTM, 0, N_Trials, simulate_delayed_memory_episode);
+        p_VSTM_neutral[obj_idx,:] = d_neutral[:,1]
+
+        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_VSTM, N_TimeSteps_Post_VSTM, N_Trials, simulate_retrocue_episode);
+        p_VSTM_retro[obj_idx,:] = d_retro[:,1];
+
+        # VSTM_long
+        # Presentation -> 1800ms -> 500 ms
+
+        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Long_VSTM, 0, N_Trials, simulate_delayed_memory_episode);
+        p_Long_VSTM_neutral[obj_idx,:] = d_neutral[:,1]
+
+        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_Long_VSTM, N_TimeSteps_Post_Long_VSTM, N_Trials, simulate_retrocue_episode);
+        p_Long_VSTM_retro[obj_idx,:] = d_retro[:,1];
+
+    end
+    
+    if return_last_only
+        return (p_IM_neutral[end], p_IM_retro[end], p_VSTM_neutral[end], p_VSTM_retro[end], p_Long_VSTM_neutral[end], p_Long_VSTM_retro[end])
+    else
+        return (p_IM_neutral, p_IM_retro, p_VSTM_neutral, p_VSTM_retro, p_Long_VSTM_neutral, p_Long_VSTM_retro)
+    end
+
+end
+
+function plot_over_time_exp2(p_short_neutral, p_short_retro, p_long_neutral, p_long_retro, NT_per_Second; title = "")
+
+    fig,ax = subplots(1, 2, figsize = (4,2.5), dpi=200,constrained_layout=true, sharey=true)
+
+    N_TimeSteps_Pre = Int(round(.2*NT_per_Second))
+    N_TimeSteps_Post = Int(round(.5*NT_per_Second))
+    N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
+    N_TimeSteps_IM = N_TimeSteps
+
+    ax[0].plot(1:N_TimeSteps_IM, cowan_k(p_short_neutral,4))
+    ax[0].plot(1:N_TimeSteps_IM, cowan_k(p_short_retro,4))
+    ax[0].set_title("IM")
+
+    N_TimeSteps_Pre = Int(round(1*NT_per_Second))
+    N_TimeSteps_Post = Int(round(.5*NT_per_Second))
+    N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
+    N_TimeSteps_IM = N_TimeSteps
+
+    ax[1].plot(1:N_TimeSteps_IM, cowan_k(p_long_neutral,4))
+    ax[1].plot(1:N_TimeSteps_IM, cowan_k(p_long_retro,4))
+
+    ax[0].set_ylabel("Cowan's K")
+    ax[0].set_xlabel("Time-Steps")
+    ax[1].set_xlabel("Time-Steps")
+    ax[1].set_title("VSTM")
+    
+    fig.suptitle(title)
+
 end
 
