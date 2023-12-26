@@ -7,14 +7,14 @@
 #SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --array=1-112        # job array with index values 0, 1, 2, 3, 4
 #SBATCH --mem-per-cpu=32G         # memory per cpu-core (4G is default)
-#SBATCH --time=02:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --time=06:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=all          # send email on job start, end and fault
 #SBATCH --mail-user=erussek@princeton.edu
 
 module purge
 module load julia/1.9.1
 
-julia --project=. shimi_1_parameter_search.jl
+julia --project=. shimi_all_parameter_search.jl
 
 
 
