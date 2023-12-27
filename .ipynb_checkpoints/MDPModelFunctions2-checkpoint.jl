@@ -316,7 +316,7 @@ function sim_exp3(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
     end
     
     if return_last_only
-        return (p_IM_neutral[end], p_IM_retro[end], p_VSTM_neutral[end], p_VSTM_retro[end], p_Long_VSTM_neutral[end], p_Long_VSTM_retro[end])
+        return (p_IM_neutral[:,end], p_IM_retro[:,end], p_VSTM_neutral[:,end], p_VSTM_retro[:,end], p_Long_VSTM_neutral[:,end], p_Long_VSTM_retro[:,end])
     else
         return (p_IM_neutral, p_IM_retro, p_VSTM_neutral, p_VSTM_retro, p_Long_VSTM_neutral, p_Long_VSTM_retro)
     end
