@@ -66,14 +66,14 @@ for this_job_idx in these_jobs
 
     println("Job: $this_job_idx, N_Quanta: $N_Quanta, epsilon: $epsilon, NT_per_Second: $NT_per_Second")
 
-    local job_res_1 = sim_exp1(epsilon, N_Quanta, NT_per_Second);
-    local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second).jld2"
-    local full_file_path = joinpath(to_save_folder,"exp1",file_name)
-    jldsave(full_file_path; job_res_1)
+    #local job_res_1 = sim_exp1(epsilon, N_Quanta, NT_per_Second);
+    #local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second).jld2"
+    #local full_file_path = joinpath(to_save_folder,"exp1",file_name)
+    #jldsave(full_file_path; job_res_1)
 
-    local job_res_2 = sim_exp2(epsilon, N_Quanta, NT_per_Second);
-    local full_file_path = joinpath(to_save_folder,"exp2",file_name)
-    jldsave(full_file_path; job_res_2)
+    #local job_res_2 = sim_exp2(epsilon, N_Quanta, NT_per_Second);
+    #local full_file_path = joinpath(to_save_folder,"exp2",file_name)
+    #jldsave(full_file_path; job_res_2)
     
     local job_res_3 = sim_exp3(epsilon, N_Quanta, NT_per_Second);
     local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second).jld2"
