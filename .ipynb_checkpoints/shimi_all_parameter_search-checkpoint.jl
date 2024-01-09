@@ -2,10 +2,10 @@ using JLD2
 include("MDPModelFunctions2.jl")
 
 # array job stuff
-is_array_job = false
+is_array_job = true
 run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 2
 
-on_cluster = false
+on_cluster = true
 
 if on_cluster
     to_save_folder = "/home/erussek/projects/Memory_Models/shimi_all_parameter_search_v2"
