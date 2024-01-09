@@ -71,10 +71,15 @@ end
 function prob_remember(num_quanta)
     return 1 .- exp.(-.2*num_quanta)
 end
-"""
+
 
 function prob_remember(num_quanta)
     return .5 .+ (1 .- exp.(.1*-(num_quanta)))./2
+end
+"""
+
+function prob_remember(num_quanta; mem_slope=.1)
+    return .5 .+ (1 .- exp.(mem_slope*-(num_quanta)))./2
 end
 
 function get_state_reward(s, object_probe_probs, per_timestep_probe_prob)

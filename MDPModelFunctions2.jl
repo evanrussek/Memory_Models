@@ -143,14 +143,14 @@ function simulate_retrocue_episode(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre
     
 end
 
-function simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun)
+function simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; mem_slope = .1)
     
     N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
     prob_remember_all = zeros(N_TimeSteps, N_Objects, N_Trials)
     
     for t in 1:N_Trials
         state_history = sim_episode_fun(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post)
-        prob_remember_all[:, :, t] = prob_remember.(state_history)
+        prob_remember_all[:, :, t] = prob_remember.(state_history; mem_slope = mem_slope)
     end
     
     return dropdims(mean(prob_remember_all, dims=3), dims=3)
@@ -163,7 +163,7 @@ end
 
 
 
-function sim_exp1(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
+function sim_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true)
     
     """
     d_all: is prob correct over time for 3 consitions
@@ -186,17 +186,17 @@ function sim_exp1(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
     for (obj_idx, N_Objects) in enumerate(N_Object_Vals)
 
         # pre-cue all time-steps are post
-        d_precue = simulate_task(N_Quanta, N_Objects, epsilon, 0, N_TimeSteps, N_Trials, simulate_precue_episode);
+        d_precue = simulate_task(N_Quanta, N_Objects, epsilon, 0, N_TimeSteps, N_Trials, simulate_precue_episode; mem_slope = mem_slope);
         d_precue = d_precue[:,1]
         d_all[1,obj_idx,:] = d_precue
 
         # delayed memory - all time-steps are pre
-        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode);
+        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
         d_neutral = d_neutral[:,1]
         d_all[2,obj_idx,:] = d_neutral
         
         # retro-cue
-        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode);
+        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
         d_retro = d_retro[:,1]
         d_all[3,obj_idx,:] = d_retro
 
@@ -210,7 +210,7 @@ function sim_exp1(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
     
 end
 
-function sim_exp2(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
+function sim_exp2(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true)
 
     N_Trials = 1000;
 
@@ -222,10 +222,10 @@ function sim_exp2(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
     N_TimeSteps_Post = Int(round(.5*NT_per_Second))
     N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
 
-    d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode);
+    d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
     p_short_neutral = d_neutral[:,1]
 
-    d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode);
+    d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
     p_short_retro = d_retro[:,1]
 
     # VSTM
@@ -235,10 +235,10 @@ function sim_exp2(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
     N_TimeSteps_Post = Int(round(.5*NT_per_Second))
     N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
 
-    d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode);
+    d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps, 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
     p_long_neutral = d_neutral[:,1]
 
-    d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode);
+    d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
     p_long_retro = d_retro[:,1];
     
     if return_last_only
@@ -249,7 +249,7 @@ function sim_exp2(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
     
 end
 
-function sim_exp3(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
+function sim_exp3(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true)
 
     N_Trials = 1000;
 
@@ -285,10 +285,10 @@ function sim_exp3(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
 
         # do the IM Block
 
-        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_IM, 0, N_Trials, simulate_delayed_memory_episode);
+        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_IM, 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
         p_IM_neutral[obj_idx,:] = d_neutral[:,1]
 
-        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_IM, N_TimeSteps_Post_IM, N_Trials, simulate_retrocue_episode);
+        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_IM, N_TimeSteps_Post_IM, N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
         p_IM_retro[obj_idx,:] = d_retro[:,1]
 
         # VSTM
@@ -298,19 +298,19 @@ function sim_exp3(epsilon, N_Quanta, NT_per_Second; return_last_only=true)
         N_TimeSteps_Post = Int(round(.5*NT_per_Second))
         N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
 
-        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_VSTM, 0, N_Trials, simulate_delayed_memory_episode);
+        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_VSTM, 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
         p_VSTM_neutral[obj_idx,:] = d_neutral[:,1]
 
-        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_VSTM, N_TimeSteps_Post_VSTM, N_Trials, simulate_retrocue_episode);
+        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_VSTM, N_TimeSteps_Post_VSTM, N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
         p_VSTM_retro[obj_idx,:] = d_retro[:,1];
 
         # VSTM_long
         # Presentation -> 1800ms -> 500 ms
 
-        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Long_VSTM, 0, N_Trials, simulate_delayed_memory_episode);
+        d_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Long_VSTM, 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
         p_Long_VSTM_neutral[obj_idx,:] = d_neutral[:,1]
 
-        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_Long_VSTM, N_TimeSteps_Post_Long_VSTM, N_Trials, simulate_retrocue_episode);
+        d_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre_Long_VSTM, N_TimeSteps_Post_Long_VSTM, N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
         p_Long_VSTM_retro[obj_idx,:] = d_retro[:,1];
 
     end
