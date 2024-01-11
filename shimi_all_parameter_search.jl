@@ -2,10 +2,10 @@ using JLD2
 include("MDPModelFunctions2.jl")
 
 # array job stuff
-is_array_job = true
-run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 2
+is_array_job = false
+run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 1
 
-on_cluster = true
+on_cluster = false
 
 if on_cluster
     to_save_folder = "/home/erussek/projects/Memory_Models/shimi_all_parameter_search_v2"
@@ -63,6 +63,8 @@ jobs_per_run = reshape(Vector(1:(n_jobs_per_run*n_runs)), (n_jobs_per_run, n_run
 
 these_jobs = jobs_per_run[run_idx,:]
 
+jobs_per_run = 0
+
 for this_job_idx in these_jobs
 
     local N_Quanta = job_q[this_job_idx]
@@ -85,6 +87,9 @@ for this_job_idx in these_jobs
     local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second).jld2"
     local full_file_path = joinpath(to_save_folder,"exp3",file_name)
     jldsave(full_file_path; job_res_3)
+    
+    # testing this out -- garbage collection
+    GC.gc(true)
     
 end
 
