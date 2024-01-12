@@ -4,7 +4,6 @@ include("MDPModelFunctions2.jl")
 # array job stuff
 is_array_job = true
 run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 1
-
 on_cluster = true
 
 if on_cluster
@@ -73,9 +72,9 @@ for this_job_idx in these_jobs
     local mem_slope = job_mem_slopes[this_job_idx]
 
     println("Job: $this_job_idx, N_Quanta: $N_Quanta, epsilon: $epsilon, NT_per_Second: $NT_per_Second, mem_slope: $mem_slope")
-
+    local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second)_memslope_$(mem_slope).jld2"
+    
     local job_res_1 = sim_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = mem_slope);
-    local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second).jld2"
     local full_file_path = joinpath(to_save_folder,"exp1",file_name)
     jldsave(full_file_path; job_res_1)
 
@@ -84,7 +83,6 @@ for this_job_idx in these_jobs
     jldsave(full_file_path; job_res_2)
     
     local job_res_3 = sim_exp3(epsilon, N_Quanta, NT_per_Second; mem_slope = mem_slope);
-    local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second).jld2"
     local full_file_path = joinpath(to_save_folder,"exp3",file_name)
     jldsave(full_file_path; job_res_3)
     
