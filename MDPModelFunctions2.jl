@@ -251,7 +251,7 @@ end
 
 function sim_exp3(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true)
 
-    N_Trials = 1000;
+    N_Trials = 200;
 
     N_Object_Vals = [3,6]
 

@@ -18,15 +18,15 @@ mkpath(joinpath(to_save_folder,"exp3"))
 
 ## Specify parameters for each job...
 # 21 epsilon values
-eps_vals = 0:.05:1
+eps_vals = .6:.05:1
 
 # quanta values
 q_vals = 2:5:100
 
-mem_slopes = [.05, .1, 1.5, 2]
+mem_slopes = [.05, .1, .2, .4]
 
 # re-run with new values so we can see some concavity...
-NT_vals = [800, 1600, 2400, 3200] # run w these now... 
+NT_vals = [800, 1600, 3200, 6400] # run w these now... 
 
 job_eps = []
 job_q = []
@@ -52,7 +52,7 @@ n_jobs_total = length(job_nt)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 35 # should be about 30 minutes...
+n_jobs_per_run = 10 # should be about 30 minutes...
 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
