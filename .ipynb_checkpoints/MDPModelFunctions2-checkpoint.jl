@@ -163,7 +163,7 @@ end
 
 
 
-function sim_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true)
+function sim_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true, N_Trials = 500)
     
     """
     d_all: is prob correct over time for 3 consitions
@@ -171,9 +171,7 @@ function sim_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_
     row2: neutral
     row3: retrocue
     """
-    
-    N_Trials = 1000;
-    
+        
     N_Object_Vals = [2,4]
 
     # these are each 1 second, but question is how many model time-steps occur per real world second...
@@ -210,9 +208,8 @@ function sim_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_
     
 end
 
-function sim_exp2(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true)
+function sim_exp2(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true, N_Trials = 500)
 
-    N_Trials = 1000;
 
     N_Objects = 4
 
@@ -249,9 +246,7 @@ function sim_exp2(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_
     
 end
 
-function sim_exp3(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true)
-
-    N_Trials = 200;
+function sim_exp3(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true, N_Trials = N_Trials)
 
     N_Object_Vals = [3,6]
 
