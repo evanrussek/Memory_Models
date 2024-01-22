@@ -1,0 +1,7 @@
+ERROR: LoadError: BoundsError: attempt to access 3024-element Vector{Any} at index [3025]
+Stacktrace:
+ [1] getindex(A::Vector{Any}, i1::Int64)
+   @ Base ./essentials.jl:13
+ [2] top-level scope
+   @ ~/projects/Memory_Models/shimi_all_parameter_search_coarse.jl:71
+in expression starting at /home/erussek/projects/Memory_Models/shimi_all_parameter_search_coarse.jl:69

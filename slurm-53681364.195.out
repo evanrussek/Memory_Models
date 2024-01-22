@@ -1,0 +1,13 @@
+N_Jobs_Total: 3024
+N_Runs: 275
+Job: 2135, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 25, mem_slope: 0.2
+Job: 2136, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 50, mem_slope: 0.2
+Job: 2137, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 100, mem_slope: 0.2
+Job: 2138, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 200, mem_slope: 0.2
+Job: 2139, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 400, mem_slope: 0.2
+Job: 2140, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 800, mem_slope: 0.2
+Job: 2141, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 1600, mem_slope: 0.2
+Job: 2142, N_Quanta: 64, epsilon: 0.423, NT_per_Second: 3200, mem_slope: 0.2
+Job: 2143, N_Quanta: 128, epsilon: 0.423, NT_per_Second: 12, mem_slope: 0.2
+Job: 2144, N_Quanta: 128, epsilon: 0.423, NT_per_Second: 25, mem_slope: 0.2
+Job: 2145, N_Quanta: 128, epsilon: 0.423, NT_per_Second: 50, mem_slope: 0.2

@@ -1,0 +1,2 @@
+/var/spool/slurmd/job53681983/slurm_script: line 17: 2658541 Killed                  julia --project=. shimi_all_parameter_search_coarse.jl
+slurmstepd: error: Detected 1 oom_kill event in StepId=53681983.batch. Some of the step tasks have been OOM Killed.

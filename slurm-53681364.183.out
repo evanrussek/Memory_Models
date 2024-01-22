@@ -1,0 +1,13 @@
+N_Jobs_Total: 3024
+N_Runs: 275
+Job: 2003, N_Quanta: 128, epsilon: 0.886, NT_per_Second: 200, mem_slope: 0.2
+Job: 2004, N_Quanta: 128, epsilon: 0.886, NT_per_Second: 400, mem_slope: 0.2
+Job: 2005, N_Quanta: 128, epsilon: 0.886, NT_per_Second: 800, mem_slope: 0.2
+Job: 2006, N_Quanta: 128, epsilon: 0.886, NT_per_Second: 1600, mem_slope: 0.2
+Job: 2007, N_Quanta: 128, epsilon: 0.886, NT_per_Second: 3200, mem_slope: 0.2
+Job: 2008, N_Quanta: 256, epsilon: 0.886, NT_per_Second: 12, mem_slope: 0.2
+Job: 2009, N_Quanta: 256, epsilon: 0.886, NT_per_Second: 25, mem_slope: 0.2
+Job: 2010, N_Quanta: 256, epsilon: 0.886, NT_per_Second: 50, mem_slope: 0.2
+Job: 2011, N_Quanta: 256, epsilon: 0.886, NT_per_Second: 100, mem_slope: 0.2
+Job: 2012, N_Quanta: 256, epsilon: 0.886, NT_per_Second: 200, mem_slope: 0.2
+Job: 2013, N_Quanta: 256, epsilon: 0.886, NT_per_Second: 400, mem_slope: 0.2
