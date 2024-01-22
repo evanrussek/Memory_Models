@@ -1,0 +1,1 @@
+/var/spool/slurmd/job53665127/slurm_script: line 17: 3168543 Segmentation fault      (core dumped) julia --project=. search_ms_nt_w_fitting.jl

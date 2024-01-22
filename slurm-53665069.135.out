@@ -1,0 +1,41 @@
+N_Jobs_Total: 144
+Starting optimization with optimizer DiffEvoOpt{FitPopulation{Float64}, RadiusLimitedSelector, BlackBoxOptim.AdaptiveDiffEvoRandBin{3}, RandomBound{ContinuousRectSearchSpace}}
+0.00 secs, 0 evals, 0 steps
+466.13 secs, 2 evals, 1 steps, improv/step: 1.000 (last = 1.0000), fitness=9.931594277
+1013.57 secs, 4 evals, 2 steps, improv/step: 0.500 (last = 0.0000), fitness=9.931594277
+1594.88 secs, 6 evals, 3 steps, improv/step: 0.667 (last = 1.0000), fitness=9.931594277
+2131.19 secs, 8 evals, 4 steps, improv/step: 0.750 (last = 1.0000), fitness=9.931594277
+2689.23 secs, 10 evals, 5 steps, improv/step: 0.600 (last = 0.0000), fitness=9.931594277
+2871.43 secs, 11 evals, 6 steps, improv/step: 0.667 (last = 1.0000), fitness=9.825726013
+3403.65 secs, 13 evals, 7 steps, improv/step: 0.571 (last = 0.0000), fitness=9.825726013
+3884.38 secs, 15 evals, 8 steps, improv/step: 0.625 (last = 1.0000), fitness=9.825726013
+4243.85 secs, 17 evals, 9 steps, improv/step: 0.667 (last = 1.0000), fitness=9.825726013
+4591.09 secs, 19 evals, 10 steps, improv/step: 0.700 (last = 1.0000), fitness=9.825726013
+4970.62 secs, 21 evals, 11 steps, improv/step: 0.727 (last = 1.0000), fitness=9.825726013
+5396.63 secs, 23 evals, 12 steps, improv/step: 0.750 (last = 1.0000), fitness=1.647533484
+5922.61 secs, 25 evals, 13 steps, improv/step: 0.692 (last = 0.0000), fitness=1.647533484
+6384.64 secs, 27 evals, 14 steps, improv/step: 0.714 (last = 1.0000), fitness=1.647533484
+6863.87 secs, 29 evals, 15 steps, improv/step: 0.667 (last = 0.0000), fitness=1.647533484
+7307.85 secs, 31 evals, 16 steps, improv/step: 0.625 (last = 0.0000), fitness=1.647533484
+7782.79 secs, 33 evals, 17 steps, improv/step: 0.647 (last = 1.0000), fitness=1.647533484
+8256.52 secs, 35 evals, 18 steps, improv/step: 0.611 (last = 0.0000), fitness=1.647533484
+8672.08 secs, 37 evals, 19 steps, improv/step: 0.579 (last = 0.0000), fitness=1.647533484
+9068.71 secs, 39 evals, 20 steps, improv/step: 0.550 (last = 0.0000), fitness=1.647533484
+9380.58 secs, 41 evals, 21 steps, improv/step: 0.524 (last = 0.0000), fitness=1.647533484
+9577.19 secs, 42 evals, 22 steps, improv/step: 0.500 (last = 0.0000), fitness=1.647533484
+9801.14 secs, 43 evals, 23 steps, improv/step: 0.478 (last = 0.0000), fitness=1.647533484
+10211.01 secs, 45 evals, 24 steps, improv/step: 0.458 (last = 0.0000), fitness=1.647533484
+10543.74 secs, 47 evals, 25 steps, improv/step: 0.480 (last = 1.0000), fitness=1.647533484
+
+Optimization stopped after 26 steps and 10967.64 seconds
+Termination reason: Max time (10800.0 s) reached
+Steps per second = 0.00
+Function evals per second = 0.00
+Improvements/step = Inf
+Total function evaluations = 49
+
+
+Best candidate found: [0.155473, 0.427555]
+
+Fitness: 1.647533484
+

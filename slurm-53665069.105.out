@@ -1,0 +1,56 @@
+N_Jobs_Total: 144
+Starting optimization with optimizer DiffEvoOpt{FitPopulation{Float64}, RadiusLimitedSelector, BlackBoxOptim.AdaptiveDiffEvoRandBin{3}, RandomBound{ContinuousRectSearchSpace}}
+0.00 secs, 0 evals, 0 steps
+338.49 secs, 2 evals, 1 steps, improv/step: 1.000 (last = 1.0000), fitness=7.769398038
+616.69 secs, 4 evals, 2 steps, improv/step: 0.500 (last = 0.0000), fitness=7.769398038
+961.70 secs, 6 evals, 3 steps, improv/step: 0.333 (last = 0.0000), fitness=7.378203923
+1212.34 secs, 8 evals, 4 steps, improv/step: 0.500 (last = 1.0000), fitness=7.378203923
+1567.91 secs, 10 evals, 5 steps, improv/step: 0.400 (last = 0.0000), fitness=7.378203923
+1915.69 secs, 12 evals, 6 steps, improv/step: 0.333 (last = 0.0000), fitness=7.378203923
+2086.81 secs, 13 evals, 7 steps, improv/step: 0.286 (last = 0.0000), fitness=7.378203923
+2436.43 secs, 15 evals, 8 steps, improv/step: 0.375 (last = 1.0000), fitness=7.378203923
+2779.13 secs, 17 evals, 9 steps, improv/step: 0.444 (last = 1.0000), fitness=7.378203923
+3148.15 secs, 19 evals, 10 steps, improv/step: 0.500 (last = 1.0000), fitness=7.378203923
+3347.35 secs, 21 evals, 11 steps, improv/step: 0.455 (last = 0.0000), fitness=7.378203923
+3699.27 secs, 23 evals, 12 steps, improv/step: 0.500 (last = 1.0000), fitness=7.378203923
+4049.01 secs, 25 evals, 13 steps, improv/step: 0.538 (last = 1.0000), fitness=7.378203923
+4391.56 secs, 27 evals, 14 steps, improv/step: 0.571 (last = 1.0000), fitness=7.378203923
+4673.29 secs, 29 evals, 15 steps, improv/step: 0.600 (last = 1.0000), fitness=7.092346171
+5003.68 secs, 31 evals, 16 steps, improv/step: 0.625 (last = 1.0000), fitness=7.092346171
+5343.40 secs, 33 evals, 17 steps, improv/step: 0.647 (last = 1.0000), fitness=7.092346171
+5572.82 secs, 35 evals, 18 steps, improv/step: 0.667 (last = 1.0000), fitness=7.092346171
+5719.67 secs, 36 evals, 19 steps, improv/step: 0.632 (last = 0.0000), fitness=7.092346171
+6025.49 secs, 38 evals, 20 steps, improv/step: 0.600 (last = 0.0000), fitness=5.217095232
+6365.96 secs, 40 evals, 21 steps, improv/step: 0.571 (last = 0.0000), fitness=5.217095232
+6559.01 secs, 42 evals, 22 steps, improv/step: 0.545 (last = 0.0000), fitness=5.217095232
+6876.10 secs, 44 evals, 23 steps, improv/step: 0.565 (last = 1.0000), fitness=5.217095232
+7037.79 secs, 45 evals, 24 steps, improv/step: 0.583 (last = 1.0000), fitness=5.217095232
+7201.16 secs, 46 evals, 25 steps, improv/step: 0.560 (last = 0.0000), fitness=5.217095232
+7499.82 secs, 48 evals, 26 steps, improv/step: 0.538 (last = 0.0000), fitness=5.217095232
+7659.90 secs, 49 evals, 27 steps, improv/step: 0.519 (last = 0.0000), fitness=5.217095232
+7839.29 secs, 51 evals, 28 steps, improv/step: 0.500 (last = 0.0000), fitness=5.217095232
+7997.34 secs, 52 evals, 29 steps, improv/step: 0.517 (last = 1.0000), fitness=5.217095232
+8208.34 secs, 54 evals, 30 steps, improv/step: 0.533 (last = 1.0000), fitness=5.217095232
+8340.16 secs, 55 evals, 31 steps, improv/step: 0.516 (last = 0.0000), fitness=5.217095232
+8505.95 secs, 56 evals, 32 steps, improv/step: 0.500 (last = 0.0000), fitness=5.217095232
+8664.69 secs, 57 evals, 33 steps, improv/step: 0.515 (last = 1.0000), fitness=5.217095232
+8830.59 secs, 58 evals, 34 steps, improv/step: 0.500 (last = 0.0000), fitness=5.217095232
+9149.56 secs, 60 evals, 35 steps, improv/step: 0.514 (last = 1.0000), fitness=5.217095232
+9361.10 secs, 62 evals, 36 steps, improv/step: 0.500 (last = 0.0000), fitness=5.217095232
+9696.40 secs, 64 evals, 37 steps, improv/step: 0.514 (last = 1.0000), fitness=5.217095232
+9997.17 secs, 66 evals, 38 steps, improv/step: 0.526 (last = 1.0000), fitness=5.217095232
+10238.98 secs, 68 evals, 39 steps, improv/step: 0.538 (last = 1.0000), fitness=5.217095232
+10511.32 secs, 70 evals, 40 steps, improv/step: 0.525 (last = 0.0000), fitness=5.217095232
+
+Optimization stopped after 41 steps and 10829.95 seconds
+Termination reason: Max time (10800.0 s) reached
+Steps per second = 0.00
+Function evals per second = 0.01
+Improvements/step = Inf
+Total function evaluations = 72
+
+
+Best candidate found: [0.424758, 0.82899]
+
+Fitness: 4.186639707
+
