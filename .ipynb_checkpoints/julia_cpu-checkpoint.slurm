@@ -14,5 +14,5 @@
 module purge
 module load julia/1.9.1
 
-julia --project=. shimi_all_parameter_search_fine.jl
+julia --project=. shimi_parameter_search_fine.jl
 
