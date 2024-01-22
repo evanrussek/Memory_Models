@@ -246,7 +246,7 @@ function sim_exp2(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_
     
 end
 
-function sim_exp3(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true, N_Trials = N_Trials)
+function sim_exp3(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true, N_Trials = 500)
 
     N_Object_Vals = [3,6]
 
