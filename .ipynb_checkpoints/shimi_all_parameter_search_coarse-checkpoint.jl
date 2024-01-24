@@ -7,9 +7,9 @@ run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 1
 on_cluster = true
 
 if on_cluster
-    to_save_folder = "/home/erussek/projects/Memory_Models/shimi_all_parameter_search_coarse2"
+    to_save_folder = "/home/erussek/projects/Memory_Models/shimi_all_parameter_search_coarse3"
 else
-    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/code/Memory_Models/shimi_all_parameter_search_coarse2"
+    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/code/Memory_Models/shimi_all_parameter_search_coarse3"
 end
 
 mkpath(joinpath(to_save_folder,"exp1"))
@@ -20,16 +20,16 @@ mkpath(joinpath(to_save_folder,"exp3"))
 # 21 epsilon values
 
 # eps_vals = round.(1 .- collect(.01 .* (1.5 .^ (0:2:10))), digits = 3)
-eps_vals = collect(.99:-.1:.01)
+eps_vals = collect(.99:-.05:.01)
 # quanta values
 # q_vals = ceil.(2 .^ collect(1:8))
 
-q_vals = collect(2:10:102)
+q_vals = collect(2:5:80)
 
-mem_slopes = [.025, .05, .1, .2, .4, .8]
+mem_slopes = [.025, .05, .1, .2, .4]
 
 # re-run with new values so we can see some concavity...
-NT_vals = [25, 50, 100, 200, 400, 800, 1600, 3200] # run w these now... 
+NT_vals = [25, 50, 100, 200, 400, 800] # run w these now... 
 
 job_eps = []
 job_q = []
@@ -55,7 +55,7 @@ n_jobs_total = length(job_nt)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 20 # should be about 30 minutes...
+n_jobs_per_run = 32 # should be about 30 minutes...
 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
