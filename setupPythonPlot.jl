@@ -15,9 +15,16 @@ PythonPlot.matplotlib.rcParams["ytick.major.size"]= 4.800000000000001
 PythonPlot.matplotlib.rcParams["xtick.minor.size"]= 3.2
 PythonPlot.matplotlib.rcParams["ytick.minor.size"]= 3.2
 PythonPlot.matplotlib.rcParams["font.size"]= 9.600000000000001
+PythonPlot.matplotlib.rcParams["font.size"]= 8
 PythonPlot.matplotlib.rcParams["axes.labelsize"]= 9.600000000000001
-PythonPlot.matplotlib.rcParams["axes.titlesize"]= 9.600000000000001
-PythonPlot.matplotlib.rcParams["xtick.labelsize"]= 8.8
+PythonPlot.matplotlib.rcParams["axes.labelsize"]= 9#9.600000000000001
+PythonPlot.matplotlib.rcParams["axes.titlesize"]= 9#9.600000000000001
+PythonPlot.matplotlib.rcParams["xtick.labelsize"]= 8
+#PythonPlot.matplotlib.rcParams["xtick.labelsize"]= 8
+
 PythonPlot.matplotlib.rcParams["ytick.labelsize"]= 8.8
-PythonPlot.matplotlib.rcParams["legend.fontsize"]= 8.8
+PythonPlot.matplotlib.rcParams["ytick.labelsize"]= 8
+
+PythonPlot.matplotlib.rcParams["legend.fontsize"]= 8.2
 PythonPlot.matplotlib.rcParams["legend.title_fontsize"]= 9.600000000000001
+PythonPlot.matplotlib.rcParams["svg.fonttype"] = "none"
