@@ -1,0 +1,32 @@
+N_Jobs_Total: 2450
+N_Runs: 82
+Job: 1801, N_Quanta: 38, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1802, N_Quanta: 39, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1803, N_Quanta: 40, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1804, N_Quanta: 41, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1805, N_Quanta: 42, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1806, N_Quanta: 43, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1807, N_Quanta: 44, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1808, N_Quanta: 45, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1809, N_Quanta: 46, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1810, N_Quanta: 47, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1811, N_Quanta: 48, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1812, N_Quanta: 49, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1813, N_Quanta: 50, epsilon: 0.28, NT_per_Second: 800, mem_slope: 0.2
+Job: 1814, N_Quanta: 2, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1815, N_Quanta: 3, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1816, N_Quanta: 4, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1817, N_Quanta: 5, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1818, N_Quanta: 6, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1819, N_Quanta: 7, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1820, N_Quanta: 8, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1821, N_Quanta: 9, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1822, N_Quanta: 10, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1823, N_Quanta: 11, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1824, N_Quanta: 12, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1825, N_Quanta: 13, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1826, N_Quanta: 14, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1827, N_Quanta: 15, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1828, N_Quanta: 16, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1829, N_Quanta: 17, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2
+Job: 1830, N_Quanta: 18, epsilon: 0.26, NT_per_Second: 800, mem_slope: 0.2

@@ -1,0 +1,32 @@
+N_Jobs_Total: 2450
+N_Runs: 82
+Job: 2011, N_Quanta: 3, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2012, N_Quanta: 4, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2013, N_Quanta: 5, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2014, N_Quanta: 6, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2015, N_Quanta: 7, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2016, N_Quanta: 8, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2017, N_Quanta: 9, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2018, N_Quanta: 10, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2019, N_Quanta: 11, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2020, N_Quanta: 12, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2021, N_Quanta: 13, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2022, N_Quanta: 14, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2023, N_Quanta: 15, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2024, N_Quanta: 16, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2025, N_Quanta: 17, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2026, N_Quanta: 18, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2027, N_Quanta: 19, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2028, N_Quanta: 20, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2029, N_Quanta: 21, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2030, N_Quanta: 22, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2031, N_Quanta: 23, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2032, N_Quanta: 24, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2033, N_Quanta: 25, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2034, N_Quanta: 26, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2035, N_Quanta: 27, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2036, N_Quanta: 28, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2037, N_Quanta: 29, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2038, N_Quanta: 30, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2039, N_Quanta: 31, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2
+Job: 2040, N_Quanta: 32, epsilon: 0.18, NT_per_Second: 800, mem_slope: 0.2

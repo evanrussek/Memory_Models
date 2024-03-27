@@ -1,0 +1,32 @@
+N_Jobs_Total: 2450
+N_Runs: 82
+Job: 1471, N_Quanta: 2, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1472, N_Quanta: 3, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1473, N_Quanta: 4, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1474, N_Quanta: 5, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1475, N_Quanta: 6, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1476, N_Quanta: 7, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1477, N_Quanta: 8, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1478, N_Quanta: 9, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1479, N_Quanta: 10, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1480, N_Quanta: 11, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1481, N_Quanta: 12, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1482, N_Quanta: 13, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1483, N_Quanta: 14, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1484, N_Quanta: 15, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1485, N_Quanta: 16, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1486, N_Quanta: 17, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1487, N_Quanta: 18, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1488, N_Quanta: 19, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1489, N_Quanta: 20, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1490, N_Quanta: 21, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1491, N_Quanta: 22, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1492, N_Quanta: 23, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1493, N_Quanta: 24, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1494, N_Quanta: 25, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1495, N_Quanta: 26, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1496, N_Quanta: 27, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1497, N_Quanta: 28, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1498, N_Quanta: 29, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1499, N_Quanta: 30, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
+Job: 1500, N_Quanta: 31, epsilon: 0.4, NT_per_Second: 800, mem_slope: 0.2
