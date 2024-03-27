@@ -4,6 +4,8 @@ using StatsBase
 
 function sample_state(N_Objects, N_Quanta)
     
+    # should just pick an assignment for each quanta...
+    
     # Step 1: Generate N-1 random integers
     random_integers = rand(1:N_Quanta, N_Objects-1)
 
@@ -348,3 +350,20 @@ function plot_over_time_exp2(p_short_neutral, p_short_retro, p_long_neutral, p_l
 
 end
 
+function sim_tanoue_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, return_last_only=true, N_Trials = 1000)
+
+    N_Objects = 4
+    N_TimeSteps_Pre = Int(round(1*NT_per_Second))
+    N_TimeSteps_Post_all = [Int(round(x*NT_per_Second)) for x in .1:.1:.7]
+
+    N_TimeSteps_all = N_TimeSteps_Pre .+ N_TimeSteps_Post_all
+
+    p_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_all[end], 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
+    p_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post_all[end], N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
+
+    p_neutral_res = p_neutral[N_TimeSteps_all,1]
+    p_retro_res = p_retro[N_TimeSteps_all,1]
+    
+    return [p_neutral_res; p_retro_res]
+    
+end
