@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=shimi_fine_search2     # create a short name for your job
+#SBATCH --job-name=tannou2     # create a short name for your job
 #SBATCH --output=slurm-%A.%a.out # stdout file
 #SBATCH --error=slurm-%A.%a.err  # stderr file
 #SBATCH --nodes=1                # node count
