@@ -25,7 +25,7 @@ q_vals = collect(2:1:50) # could go to one...
 mem_slopes = [.2]
 
 # re-run with new values so we can see some concavity...
-NT_vals = [800] # run w these now... 
+NT_vals = [10, 25, 50, 100, 200, 400] # run w these now... 
 
 job_eps = []
 job_q = []
@@ -35,10 +35,10 @@ job_mem_slopes = []
 
 for ep in eps_vals
     for q in q_vals
-        for hyp_idx in 1:length(mem_slopes)
+        for hyp_idx in 1:length(NT_vals)
             
             nt = NT_vals[hyp_idx]
-            ms = mem_slopes[hyp_idx]
+            ms = mem_slopes[1]
 
             push!(job_eps, ep)
             push!(job_q, q)
@@ -54,7 +54,7 @@ n_jobs_total = length(job_nt)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 30 # 
+n_jobs_per_run = 245 # 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
 
