@@ -360,9 +360,18 @@ function sim_tanoue_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, retur
 
     p_neutral = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_all[end], 0, N_Trials, simulate_delayed_memory_episode; mem_slope = mem_slope);
     p_retro = simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post_all[end], N_Trials, simulate_retrocue_episode; mem_slope = mem_slope);
+    
+    if return_last_only
 
-    p_neutral_res = p_neutral[N_TimeSteps_all,1]
-    p_retro_res = p_retro[N_TimeSteps_all,1]
+        p_neutral_res = p_neutral[N_TimeSteps_all,1]
+        p_retro_res = p_retro[N_TimeSteps_all,1]
+        
+    else
+        
+        p_neutral_res = p_neutral[:,1]
+        p_retro_res = p_retro[:,1]
+        
+    end
     
     return [p_neutral_res; p_retro_res]
     
