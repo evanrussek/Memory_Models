@@ -19,7 +19,7 @@ mkpath(joinpath(to_save_folder,"exp3"))
 ## Specify parameters for each job...
 # 21 epsilon values
 
-eps_vals = collect(1:-.02:.02) # 17
+eps_vals = collect(1:-.005:.01) # 17
 
 # quanta values
 q_vals = collect(2:1:50) # could go to one... 
