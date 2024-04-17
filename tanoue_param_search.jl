@@ -22,10 +22,10 @@ eps_vals = collect(1:-.02:.02) # 17
 # quanta values
 q_vals = collect(2:1:50) # could go to one... 
 
-mem_slopes = [.2]
+mem_slopes = [.025, .05, .1, .2, .4]
 
 # re-run with new values so we can see some concavity...
-NT_vals = [10, 25, 50, 100, 200, 400] # run w these now... 
+NT_vals = [10, 25, 50, 100, 200] # run w these now... 
 
 job_eps = []
 job_q = []
@@ -35,16 +35,18 @@ job_mem_slopes = []
 
 for ep in eps_vals
     for q in q_vals
-        for hyp_idx in 1:length(NT_vals)
+        for NT_idx in 1:length(NT_vals)
+            for MS_idx = 1:length(mem_slopes)
             
-            nt = NT_vals[hyp_idx]
-            ms = mem_slopes[1]
+                nt = NT_vals[NT_idx]
+                ms = mem_slopes[MS_idx]
 
-            push!(job_eps, ep)
-            push!(job_q, q)
-            push!(job_nt, nt)
-            push!(job_mem_slopes, ms)
-
+                push!(job_eps, ep)
+                push!(job_q, q)
+                push!(job_nt, nt)
+                push!(job_mem_slopes, ms)
+                
+            end
         end
     end
 end
