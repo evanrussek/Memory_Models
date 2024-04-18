@@ -7,9 +7,9 @@ run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 5
 on_cluster = true
 
 if on_cluster
-    to_save_folder = "/home/erussek/projects/Memory_Models/tanou_parameter_search"
+    to_save_folder = "/home/erussek/scratch/gpfs/tanou_parameter_search"
 else
-    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/code/Memory_Models/tanou_parameter_search"
+    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/data/Memory_Models/tanou_parameter_search"
 end
 
 mkpath(joinpath(to_save_folder,"exp1"))
@@ -20,7 +20,7 @@ mkpath(joinpath(to_save_folder,"exp1"))
 eps_vals = collect(1:-.02:.02) # 17
 
 # quanta values
-q_vals = collect(2:1:50) # could go to one... 
+q_vals = collect(2:2:100) # could go to one... 
 
 mem_slopes = [.025, .05, .1, .2, .4]
 
