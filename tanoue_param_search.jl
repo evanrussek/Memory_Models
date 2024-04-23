@@ -7,7 +7,7 @@ run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 5
 on_cluster = true
 
 if on_cluster
-    to_save_folder = "/home/erussek/scratch/gpfs/tanou_parameter_search"
+    to_save_folder = "/scratch/gpfs/erussek/Memory_Models/tanou_parameter_search"
 else
     to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/data/Memory_Models/tanou_parameter_search"
 end
@@ -22,10 +22,10 @@ eps_vals = collect(1:-.02:.02) # 17
 # quanta values
 q_vals = collect(2:2:100) # could go to one... 
 
-mem_slopes = [.025, .05, .1, .2, .4]
+mem_slopes = [.05, .1, .2]
 
 # re-run with new values so we can see some concavity...
-NT_vals = [10, 25, 50, 100, 200] # run w these now... 
+NT_vals = [10, 25, 50, 100, 200, 400, 800] # run w these now... 
 
 job_eps = []
 job_q = []
@@ -56,7 +56,7 @@ n_jobs_total = length(job_nt)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 245 # 
+n_jobs_per_run = 175# 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
 
@@ -83,7 +83,7 @@ for this_job_idx in these_jobs
     
     local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon)_NT_per_Second_$(NT_per_Second)_memslope_$(mem_slope).jld2"
     
-    local job_res_1 = sim_tanoue_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = mem_slope, return_last_only=false, N_Trials = N_Trials);
+    local job_res_1 = sim_tanoue_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = mem_slope, return_last_only=true, N_Trials = N_Trials);
     local full_file_path = joinpath(to_save_folder,"exp1",file_name)
     jldsave(full_file_path; job_res_1)
 
