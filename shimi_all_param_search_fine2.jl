@@ -7,9 +7,9 @@ run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 1
 on_cluster = true
 
 if on_cluster
-    to_save_folder = "/home/erussek/projects/Memory_Models/shimi_all_parameter_search_fine_nt_25_50"
+    to_save_folder = "/scratch/gpfs/erussek/Memory_Models/shimi_all_parameter_search_more_vals"
 else
-    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/code/Memory_Models/shimi_all_parameter_search_fine_nt_25_50"
+    to_save_folder = "/Users/erussek/Dropbox/Griffiths_Lab_Stuff/Data/Memory_Models/shimi_all_parameter_search_fine_nt_25_50"
 end
 
 mkpath(joinpath(to_save_folder,"exp1"))
