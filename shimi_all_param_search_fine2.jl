@@ -19,15 +19,15 @@ mkpath(joinpath(to_save_folder,"exp3"))
 ## Specify parameters for each job...
 # 21 epsilon values
 
-eps_vals = collect(1:-.005:.01) # 17
+eps_vals = collect(1:-.01:.01) # 17
 
 # quanta values
-q_vals = collect(2:1:50) # could go to one... 
+q_vals = collect(2:2:80) # could go to one... 
 
-mem_slopes = [.2, .2]
+mem_slopes = [.1, .1, .2]
 
 # re-run with new values so we can see some concavity...
-NT_vals = [25, 50] # run w these now... 
+NT_vals = [100, 200, 100] # run w these now... 
 
 job_eps = []
 job_q = []
