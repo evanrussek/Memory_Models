@@ -56,7 +56,7 @@ n_jobs_total = length(job_nt)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 200 # 
+n_jobs_per_run = 14 # 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
 
