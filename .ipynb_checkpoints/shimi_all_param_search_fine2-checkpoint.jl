@@ -22,7 +22,7 @@ mkpath(joinpath(to_save_folder,"exp3"))
 eps_vals = collect(1:-.01:.01) # 17
 
 # quanta values
-q_vals = collect(2:2:80) # could go to one... 
+q_vals = collect(80:2:120) # could go to one... 
 
 mem_slopes = [.05]
 
