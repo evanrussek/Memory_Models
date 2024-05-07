@@ -25,7 +25,7 @@ q_vals = collect(2:2:100) # could go to one...
 mem_slopes = [.05, .1, .2]
 
 # re-run with new values so we can see some concavity...
-NT_vals = [10, 25, 50, 100, 200, 400, 800] # run w these now... 
+NT_vals = [1600, 3200] # run w these now... 
 
 job_eps = []
 job_q = []
@@ -56,7 +56,7 @@ n_jobs_total = length(job_nt)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 175# 
+n_jobs_per_run = 50# 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
 
