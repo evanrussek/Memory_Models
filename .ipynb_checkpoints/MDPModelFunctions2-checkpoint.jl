@@ -189,6 +189,28 @@ function simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeStep
     
 end
 
+function simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; mem_slopes = [.05, .1, .15, .2, .25], cue_reliability = 1)
+    
+    n_MS = length(mem_slopes)
+    
+    N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
+    prob_remember_all = zeros(N_TimeSteps, N_Objects, n_MS, N_Trials)
+    
+    for t in 1:N_Trials
+        state_history = sim_episode_fun(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post; cue_reliability = cue_reliability)
+        
+        for ms_idx = 1:n_MS
+            prob_remember_all[:, :, ms_idx, t] = prob_remember.(state_history; mem_slope = mem_slopes[ms_idx])
+        end
+        # if you saved this, you could fit the mem_slope param better... 
+    end
+
+    # take mean over trials
+    return dropdims(mean(prob_remember_all, dims=4), dims=4)
+    
+end
+
+
 
 function simulate_task_return_state_hist(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; cue_reliability = 1)
     
@@ -423,11 +445,12 @@ function sim_tanoue_exp1(epsilon, N_Quanta, NT_per_Second; mem_slope = .1, retur
     
 end
 
-function sim_cowan_1_shape_return_hist(N_Quanta, epsilon; N_trials = 1000, max_NT_per_sec = 800)
+function sim_cowan_1_shape(N_Quanta, epsilon; mem_slopes = [.1], N_Trials = 1000, max_NT_per_sec = 800, return_full_hist = false)
 
     State_Hist_1_Shape = Dict()
 
     State_Hist_1_Shape["N_Trials"] = N_Trials
+    State_Hist_1_Shape["mem_slopes"] = mem_slopes
 
     N_Sec = 2 # includes 500 msec encoding and 1500 msec retrieval
     # max_NT_per_sec = 1000
@@ -441,7 +464,7 @@ function sim_cowan_1_shape_return_hist(N_Quanta, epsilon; N_trials = 1000, max_N
         N_Objects = N_Obj_Conds[obj_cond]
 
         cond_name = "$(N_Objects)_Objects"
-        print(cond_name)
+        #print(cond_name)
 
         sim_episode_fun = simulate_delayed_memory_episode;
 
@@ -449,7 +472,17 @@ function sim_cowan_1_shape_return_hist(N_Quanta, epsilon; N_trials = 1000, max_N
         N_TimeSteps_Post = 0
 
         # returns N_Timepoints X 
-        State_Hist_1_Shape[cond_name] = simulate_task_return_state_hist(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun);
+        if return_full_hist
+            State_Hist_1_Shape[cond_name] = simulate_task_return_state_hist(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun);
+        else
+            # this is actually prob remember for the differnet mem_slopes
+            
+            P_Rem = simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; mem_slopes = mem_slopes)
+            
+            # just save the first one since all are the saem
+            State_Hist_1_Shape[cond_name] = P_Rem[:,1,:];
+
+        end
         
     end
     
@@ -457,7 +490,7 @@ function sim_cowan_1_shape_return_hist(N_Quanta, epsilon; N_trials = 1000, max_N
     
 end
 
-function sim_cowan_att_return_hist(N_Quanta, epsilon; N_trials = 1000, max_NT_per_sec = 800)
+function sim_cowan_att(N_Quanta, epsilon; N_Trials = 1000, max_NT_per_sec = 800, return_full_hist = false, mem_slopes = [.1])
 
     # These are all post cue - though sometimes the cue is uninformative... (then this should basically reduce to the one-shape case)
     
@@ -484,13 +517,20 @@ function sim_cowan_att_return_hist(N_Quanta, epsilon; N_trials = 1000, max_NT_pe
             N_Objects_Total = 2*N_Obj_Per_Shape;
 
             cond_name = "CueR_$(CueR)_N_Obj_Per_Shape_$(N_Obj_Per_Shape)"
-            print(string(cond_name, " "))
+            #print(string(cond_name, " "))
 
             sim_episode_fun = simulate_precue_episode_cowan;
 
 
+            if return_full_hist 
+                State_Hist_Att[cond_name] = simulate_task_return_state_hist(N_Quanta, N_Objects_Total, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; cue_reliability = CueR);
+            else
+                P_Rem = simulate_task_mult_ms(N_Quanta, N_Objects_Total, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; cue_reliability = CueR, mem_slopes = mem_slopes);
+                
+                which_obj_idxs = [1, N_Obj_Per_Shape+1]
+                State_Hist_Att[cond_name] = P_Rem[:, which_obj_idxs, :];
 
-            State_Hist_Att[cond_name] = simulate_task_return_state_hist(N_Quanta, N_Objects_Total, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; cue_reliability = CueR);
+            end
         end
     end
     

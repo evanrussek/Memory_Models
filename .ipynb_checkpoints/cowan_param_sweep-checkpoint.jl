@@ -21,10 +21,13 @@ mkpath(joinpath(to_save_folder,"one_shape"))
 mkpath(joinpath(to_save_folder,"two_shape"))
 
 # epsilon vals
-eps_vals = collect(1:-.04:.01) # 
+eps_vals = collect(1:-.02:.01) # 
+
+# vary the mem_slopes
+mem_slopes = [.025, .05, .1, .15, .2, .25]
 
 # quanta values
-q_vals = collect(2:4:100) # could go to one... 
+q_vals = collect(2:2:100) # could go to one... 
 
 # build all job parameters
 job_eps = []
@@ -32,10 +35,10 @@ job_q = []
 
 for ep in eps_vals
     for q in q_vals
-            
-
+        
         push!(job_eps, ep)
         push!(job_q, q)
+        
     end
 end
 
@@ -44,7 +47,7 @@ n_jobs_total = length(job_eps)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 25 # 
+n_jobs_per_run = 50 # 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
 
@@ -68,12 +71,12 @@ for this_job_idx in these_jobs
     local file_name = "N_Quanta_$(N_Quanta)_epsilon_$(epsilon).jld2"
     
     # run the one shape condition and save
-    local state_hist_one_shape = sim_cowan_1_shape_return_hist(N_Quanta, epsilon)
+    local state_hist_one_shape = sim_cowan_1_shape(N_Quanta, epsilon, mem_slopes = mem_slopes)
     local full_file_path = joinpath(to_save_folder,"one_shape",file_name)    
     jldsave(full_file_path; state_hist_one_shape)
     
     # run the two shape condition
-    local state_hist_two_shape = sim_cowan_att_return_hist(N_Quanta, epsilon)
+    local state_hist_two_shape = sim_cowan_att(N_Quanta, epsilon, mem_slopes = mem_slopes)
     local full_file_path = joinpath(to_save_folder,"two_shape",file_name)    
     jldsave(full_file_path; state_hist_two_shape)
     
