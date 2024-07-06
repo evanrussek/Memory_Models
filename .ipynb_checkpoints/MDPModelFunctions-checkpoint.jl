@@ -76,10 +76,16 @@ end
 function prob_remember(num_quanta)
     return .5 .+ (1 .- exp.(.1*-(num_quanta)))./2
 end
-"""
+
+
 
 function prob_remember(num_quanta; mem_slope=.1)
     return .5 .+ (1 .- exp.(mem_slope*-(num_quanta)))./2
+end
+"""
+
+function prob_remember(num_quanta; baseline_prob = .5, mem_slope=.1)
+    return baseline_prob .+ (1 .- exp.(mem_slope*-(num_quanta)))*(1-baseline_prob)
 end
 
 function get_state_reward(s, object_probe_probs, per_timestep_probe_prob)

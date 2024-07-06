@@ -24,7 +24,7 @@ mkpath(joinpath(to_save_folder,"two_shape"))
 eps_vals = collect(1:-.02:.01) # 
 
 # vary the mem_slopes
-mem_slopes = [.025, .05, .1, .15, .2, .25]
+mem_slopes = [.025, .05, .075, .1, .125, .15, .175, .2, .25]
 
 # quanta values
 q_vals = collect(2:2:100) # could go to one... 
@@ -47,7 +47,7 @@ n_jobs_total = length(job_eps)
 
 println("N_Jobs_Total: $n_jobs_total")
 
-n_jobs_per_run = 50 # 
+n_jobs_per_run = 25 # 
 n_runs = Int(ceil(n_jobs_total/n_jobs_per_run))
 println("N_Runs: $n_runs")
 
