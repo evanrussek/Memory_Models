@@ -37,14 +37,16 @@ function simulate_delayed_memory(N_Object_Vals, N_Seconds_NoCue, mem_slopes, N_Q
     
         N_TimeSteps_Pre = Int(round(N_Seconds * NT_per_Sec))
         N_TimeSteps_Post = 0
-    
+        Relevant_Timepoint = Int.(round.(N_Seconds_NoCue.*NT_per_Sec))
+
     
         # prob correct is Num Time Steps X Num Objects X Num Mem Slopes
-        prob_correct = simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_delayed_memory_episode; mem_slopes = mem_slopes, cue_reliability = 1, baseline_prob = .5)
+        prob_correct = simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_delayed_memory_episode, Relevant_Timepoint; mem_slopes = mem_slopes, cue_reliability = 1, baseline_prob = .5)
     
-        # grab the time-points from prob_correct that are relevant
-        Relevant_Timepoint = Int.(round.(N_Seconds_NoCue.*NT_per_Sec))
-        delay_prob_correct[N_Obj_idx, : , :] = prob_correct[Relevant_Timepoint, 1, :];
+        delay_prob_correct[N_Obj_idx, : , :] = prob_correct#prob_correct[Relevant_Timepoint, 1, :];
+
+        GC.gc(true)
+
     end
 
     return delay_prob_correct
@@ -74,11 +76,12 @@ function simulate_retrocue(N_Object_Vals, N_Seconds_Pre_Vals, N_Seconds_Post_Val
         for N_Sec_Pre_idx = 1:length(N_Seconds_Pre_Vals)
             N_Seconds_Pre = N_Seconds_Pre_Vals[N_Sec_Pre_idx]
             N_TimeSteps_Pre = Int(round(N_Seconds_Pre * NT_per_Sec))
-            
-            prob_correct = simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode; mem_slopes = mem_slopes, cue_reliability = 1, baseline_prob = .5)
-                
             Relevant_Timepoint = Int.(round.((N_Seconds_Pre .+  N_Seconds_Post_Vals).*NT_per_Sec))
-            retro_cue_prob_correct[N_Obj_idx, N_Sec_Pre_idx, :, :] = prob_correct[Relevant_Timepoint, 1, :]; # also only care about the first item
+
+            prob_correct = simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, simulate_retrocue_episode, Relevant_Timepoint; mem_slopes = mem_slopes, cue_reliability = 1, baseline_prob = .5)
+                
+            retro_cue_prob_correct[N_Obj_idx, N_Sec_Pre_idx, :, :] = prob_correct#[Relevant_Timepoint, 1, :]; # also only care about the first item
+            GC.gc(true)
 
         end
     end
@@ -91,11 +94,11 @@ end
 N_Object_Vals = [2, 3, 4, 5, 6, 8, 10];
 
 # Other values are time before cue and time after cue
-N_Seconds_Pre_Vals = .25 * 2 .^ (0:6)
-N_Seconds_Post_Vals = .25 * 2 .^ (0:6)
+N_Seconds_Pre_Vals = .25 * 2 .^ (0:5)
+N_Seconds_Post_Vals = .25 * 2 .^ (0:5)
 
 # For trials with no retro-cue - start from .25 seconds and multiply by 1.5 8 times
-N_Seconds_NoCue = .25 * 2 .^ (0:8)
+N_Seconds_NoCue = .25 * 2 .^ (0:6)
 
 # store all condition values in a dictionary
 condition_vals = Dict("N_Object_Vals" => N_Object_Vals, "N_Seconds_Pre_Vals" => N_Seconds_Pre_Vals, "N_Seconds_Post_Vals" => N_Seconds_Post_Vals, "N_Seconds_NoCue" => N_Seconds_NoCue)
@@ -107,7 +110,7 @@ eps_vals = collect(1:-.02:.01) # 17
 q_vals = collect(2:4:100) #
 
 # NT vals
-NT_vals = [25, 50, 100, 200, 400, 800]
+NT_vals = [800]#[25, 50, 100, 200, 400, 800]
 
 # memory slopes (this won't be looped over)
 mem_slopes = [.025, .05, .1, .2, .4, .8, 1.6]

@@ -7,9 +7,9 @@ using JLD2
 include("MDPModelFunctions2.jl")
 
 # array job stuff
-is_array_job = true
+is_array_job = false
 run_idx = is_array_job ? parse(Int, ENV["SLURM_ARRAY_TASK_ID"]) : 1
-on_cluster = true
+on_cluster = false
 
 if on_cluster
     to_save_folder = "/scratch/gpfs/erussek/Memory_Models/Cowan_Param_Sweep_1"
