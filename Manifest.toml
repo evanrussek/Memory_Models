@@ -2,7 +2,7 @@
 
 julia_version = "1.9.1"
 manifest_format = "2.0"
-project_hash = "2cc0d18973f7cceba84d56cbeebfb1ff4b8c09a5"
+project_hash = "59bf5c91c73e0607cc10ae63d71db478e03d6482"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -202,9 +202,9 @@ version = "1.10.0"
 
 [[deps.CondaPkg]]
 deps = ["JSON3", "Markdown", "MicroMamba", "Pidfile", "Pkg", "Preferences", "TOML"]
-git-tree-sha1 = "e81c4263c7ef4eca4d645ef612814d72e9255b41"
+git-tree-sha1 = "8f7faef2ca039ee068cd971a80ccd710d23fb2eb"
 uuid = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
-version = "0.2.22"
+version = "0.2.23"
 
 [[deps.ConstructionBase]]
 deps = ["LinearAlgebra"]
@@ -1085,9 +1085,9 @@ version = "1.96.4"
 
 [[deps.PythonCall]]
 deps = ["CondaPkg", "Dates", "Libdl", "MacroTools", "Markdown", "Pkg", "REPL", "Requires", "Serialization", "Tables", "UnsafePointers"]
-git-tree-sha1 = "4999b3e4e9bdeba0b61ede19cc45a2128db21cdc"
+git-tree-sha1 = "2078cd446ed0545197f94a291a9d528fe7c803c0"
 uuid = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
-version = "0.9.15"
+version = "0.9.21"
 
 [[deps.PythonPlot]]
 deps = ["Colors", "CondaPkg", "LaTeXStrings", "PythonCall", "Sockets", "Test", "VersionParsing"]
