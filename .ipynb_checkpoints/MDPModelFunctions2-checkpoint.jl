@@ -189,25 +189,44 @@ function simulate_task(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeStep
     
 end
 
-function simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun; mem_slopes = [.05, .1, .15, .2, .25], cue_reliability = 1, baseline_prob = .5)
+function simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post, N_Trials, sim_episode_fun, relevant_timepoints; keep_first_object_only = true, mem_slopes = [.05, .1, .15, .2, .25], cue_reliability = 1, baseline_prob = .5)
     
     n_MS = length(mem_slopes)
     
-    N_TimeSteps = N_TimeSteps_Pre + N_TimeSteps_Post
-    prob_remember_all = zeros(N_TimeSteps, N_Objects, n_MS, N_Trials)
+    N_TimeSteps = length(relevant_timepoints)#N_TimeSteps_Pre + N_TimeSteps_Post
+
+    if keep_first_object_only
+        prob_remember_all = zeros(N_TimeSteps, n_MS, N_Trials)
+    else
+        prob_remember_all = zeros(N_TimeSteps, N_Objects, n_MS, N_Trials)
+    end
     
     for t in 1:N_Trials
         state_history = sim_episode_fun(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_TimeSteps_Post; cue_reliability = cue_reliability)
         
+        if keep_first_object_only
+            state_history_relevant = state_history[relevant_timepoints, 1]
+        else
+            state_history_relevant = state_history[relevant_timepoints, :]
+        end
+        
         for ms_idx = 1:n_MS
-            prob_remember_all[:, :, ms_idx, t] = prob_remember.(state_history; mem_slope = mem_slopes[ms_idx], baseline_prob = baseline_prob)
+            if keep_first_object_only
+                prob_remember_all[:, ms_idx, t] = prob_remember.(state_history_relevant; mem_slope = mem_slopes[ms_idx], baseline_prob = baseline_prob)
+            else
+                prob_remember_all[:, :, ms_idx, t] = prob_remember.(state_history_relevant; mem_slope = mem_slopes[ms_idx], baseline_prob = baseline_prob)
+            end
         end
         # if you saved this, you could fit the mem_slope param better... 
+        # GC.gc(true)
     end
 
     # take mean over trials
-    return dropdims(mean(prob_remember_all, dims=4), dims=4)
-    
+    if keep_first_object_only
+        return dropdims(mean(prob_remember_all, dims=3), dims=3)
+    else
+        return dropdims(mean(prob_remember_all, dims=4), dims=4)
+    end
 end
 
 

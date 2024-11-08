@@ -218,7 +218,7 @@ function simulate_task_mult_ms(N_Quanta, N_Objects, epsilon, N_TimeSteps_Pre, N_
             end
         end
         # if you saved this, you could fit the mem_slope param better... 
-        GC.gc(true)
+        # GC.gc(true)
     end
 
     # take mean over trials
